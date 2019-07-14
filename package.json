@@ -1,5 +1,5 @@
 {
-  "name": "flights3d",
+  "name": "city-tour3d",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -22,7 +22,6 @@
     "@angular/compiler": "8.1.1",
     "@angular/core": "8.1.1",
     "@angular/forms": "8.1.1",
-    "@angular/http": "7.1.4",
     "@angular/material": "^7.2.0",
     "@angular/platform-browser": "8.1.1",
     "@angular/platform-browser-dynamic": "8.1.1",
