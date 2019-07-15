@@ -1,6 +1,6 @@
-# Flights3d
+# City-Tour3D
 
-Integrate Cesium, Vricon and ADS-B data.
+Integrate Cesium, Vricon 3D Tiles.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli)
 
@@ -10,7 +10,7 @@ Run `ng serve` for a dev server. Navigate to http://localhost:4200/ The app will
 
 ## Firebase Build and Deploy
 
-This project is deployed to Firebase and avalible at https://flights3d-amulrean.firebaseapp.com/
+This project is deployed to Firebase and avalible at https://city-tour3d-amulrean.firebaseapp.com/
 
 - `ng build --prod`
 - test build locally `firebase serve`

@@ -2,11 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, timer } from 'rxjs';
 import { select, Store } from '@ngrx/store';
 import { TileSet } from '../../models/map';
-import { LivePlanes } from '../../models/planes';
 import { MapState, getSelectedTileSet } from '../../state/reducers/map';
-import { getLivePlanes, getLivePlanesLength } from '../../state/reducers/planes';
 import { SelectTileSet, UnselectTile } from '../../state/actions/map';
-import { RefreshStatesAll } from '../../state/actions/planes';
 
 @Component({
   selector: 'app-sidebar',
@@ -15,9 +12,6 @@ import { RefreshStatesAll } from '../../state/actions/planes';
 })
 export class SidebarComponent implements OnInit {
   selectedTileSet$: Observable<TileSet>;
-
-  liveStates$: Observable<LivePlanes>;
-  liveStatesLength$: Observable<number>;
 
   tileSets = [
     {
@@ -36,15 +30,9 @@ export class SidebarComponent implements OnInit {
 
   constructor(private store: Store<MapState>) {
     this.selectedTileSet$ = store.pipe(select(getSelectedTileSet));
-
-    this.liveStates$ = store.pipe(select(getLivePlanes));
-
-    this.liveStatesLength$ = store.pipe(select(getLivePlanesLength));
   }
 
-  ngOnInit() {
-    this.refreshPlanes();
-  }
+  ngOnInit() {}
 
   selectTileSet(selected: TileSet) {
     this.store.dispatch(new SelectTileSet(selected));
@@ -52,9 +40,5 @@ export class SidebarComponent implements OnInit {
 
   reset() {
     this.store.dispatch(new UnselectTile());
-  }
-
-  refreshPlanes() {
-    this.store.dispatch(new RefreshStatesAll());
   }
 }

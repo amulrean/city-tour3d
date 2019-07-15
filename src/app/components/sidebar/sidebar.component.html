@@ -1,28 +1,5 @@
-
-<div>Current Selected: {{ (selectedTileSet$ | async)?.name }}</div>
+<h2>Select a Tileset</h2>
 <div *ngFor="let tileSet of tileSets">
-  <button (click)="selectTileSet(tileSet)">{{ tileSet.name }}</button>
+  <button mat-button color="primary" (click)="selectTileSet(tileSet)">{{ tileSet.name }}</button>
 </div>
-
-
-<button (click)="reset()">Reset Counter</button>
-
-<div>Live States: {{ (liveStatesLength$ | async) }}</div>
-
-<button (click)="refreshPlanes()">Refresh Planes</button>
-<mat-list>
-  <mat-list-item *ngFor="let planeItem of (liveStates$ | async | keyvalue)">
-    <!--<mat-icon matListIcon>folder</mat-icon>-->
-    <h3 matLine> {{planeItem.key}} </h3>
-    <p matLine>
-      <span> {{planeItem.value.origin_country}} </span>
-      <span> -- {{planeItem.value.currentState.velocity}} </span>
-    </p>
-    <p matLine>
-      <span> {{planeItem.value.currentState.time_position * 1000 | date: 'medium'}} </span>
-      </p>
-    <p matLine>
-      <span> -- {{planeItem.value.currentState.last_contact * 1000 | date: 'medium'}} </span>
-    </p>
-  </mat-list-item>
-</mat-list>
+<button mat-button color="warn" (click)="reset()">Reset</button>

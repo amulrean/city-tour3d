@@ -3,7 +3,6 @@ import { select, Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { TileSet, IMoveEndPayload, IRectangle, ICameraState } from '../../models/map';
 import { MapState, getSelectedTileSet } from '../../state/reducers/map';
-import { getAllCesiumPlaneEntities } from '../../state/reducers/cesium';
 import { MoveEnd } from '../../state/actions/map';
 
 @Component({
@@ -14,23 +13,17 @@ import { MoveEnd } from '../../state/actions/map';
 export class MapComponent implements OnInit, OnDestroy {
   viewer;
   selectedTileSet$: Observable<TileSet>;
-  livePlanes$: Observable<any>;
+  currentTileSet: TileSet;
   subscriptions: Subscription[] = [];
 
   constructor(private store: Store<MapState>) {
     this.selectedTileSet$ = store.pipe(select(getSelectedTileSet));
-    this.livePlanes$ = store.pipe(select(getAllCesiumPlaneEntities));
   }
 
   ngOnInit() {
-    const cartoLight = new Cesium.UrlTemplateImageryProvider({
-      url: 'https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png',
-      credit: 'Map tiles by CartoDB'
-    });
     this.viewer = new Cesium.Viewer('cesiumContainer', {
       sceneMode: Cesium.SceneMode.SCENE3D,
-      geocoder: false,
-      imageryProvider: cartoLight
+      geocoder: false
     });
 
     this.viewer.camera.moveEnd.addEventListener(() => {
@@ -39,38 +32,24 @@ export class MapComponent implements OnInit, OnDestroy {
 
     this.subscriptions.push(
       this.selectedTileSet$.subscribe(selectedTileSet => {
+        if (this.currentTileSet) {
+          this.viewer.scene.primitives.remove(this.currentTileSet);
+          this.currentTileSet = undefined;
+        }
         if (selectedTileSet) {
-          const tileset = this.viewer.scene.primitives.add(
+          this.currentTileSet = this.viewer.scene.primitives.add(
             new Cesium.Cesium3DTileset({
               url: selectedTileSet.url
             })
           );
-          this.viewer.zoomTo(tileset);
+          this.viewer.flyTo(this.currentTileSet);
         }
-      })
-    );
-
-    this.subscriptions.push(
-      this.livePlanes$.subscribe(planeEntities => {
-        this.addEntities(planeEntities);
       })
     );
   }
 
   ngOnDestroy() {
     this.subscriptions.map(sub => sub.unsubscribe());
-  }
-
-  addEntities(planeEntities: any[]) {
-    planeEntities.forEach(planeEntity => {
-      const viewerEntity = this.viewer.entities.getOrCreateEntity(planeEntity.id);
-      const keys = Object.keys(planeEntity);
-      keys.forEach(value => {
-        if (value !== 'id') {
-          viewerEntity[value] = planeEntity[value];
-        }
-      });
-    });
   }
 
   private getMoveEndPayload(): IMoveEndPayload {

@@ -12,19 +12,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     CommonModule,
     MatButtonModule,
     MatCheckboxModule,
-    // MatIconModule,
+    MatIconModule,
     MatListModule,
     MatToolbarModule,
     MatSidenavModule
   ],
-  exports: [
-    MatButtonModule,
-    MatCheckboxModule,
-    // MatIconModule,
-    MatListModule,
-    MatToolbarModule,
-    MatSidenavModule
-  ],
+  exports: [MatButtonModule, MatCheckboxModule, MatIconModule, MatListModule, MatToolbarModule, MatSidenavModule],
   declarations: []
 })
 export class AppCustomMaterialImportsModule {}
