@@ -4,5 +4,19 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  tileSets: [
+    {
+      name: 'Washington DC',
+      url: 'https://s3.amazonaws.com/amulrean-vricon/usa/washington_dc/tileset.json'
+    },
+    {
+      name: 'North Korea',
+      url: 'https://s3.amazonaws.com/amulrean-vricon/north_korea/pyongyang/tileset.json'
+    },
+    {
+      name: 'Brazil',
+      url: 'https://s3.amazonaws.com/amulrean-vricon/brazil/rio_de_janeiro/tileset.json'
+    }
+  ]
 };

@@ -13,7 +13,7 @@ import { MoveEnd } from '../../state/actions/map';
 export class MapComponent implements OnInit, OnDestroy {
   viewer;
   selectedTileSet$: Observable<TileSet>;
-  currentTileSet: TileSet;
+  currentTileSetPrimitive: any;
   subscriptions: Subscription[] = [];
 
   constructor(private store: Store<MapState>) {
@@ -32,17 +32,21 @@ export class MapComponent implements OnInit, OnDestroy {
 
     this.subscriptions.push(
       this.selectedTileSet$.subscribe(selectedTileSet => {
-        if (this.currentTileSet) {
-          this.viewer.scene.primitives.remove(this.currentTileSet);
-          this.currentTileSet = undefined;
+        if (this.currentTileSetPrimitive) {
+          this.viewer.scene.primitives.remove(this.currentTileSetPrimitive);
+          this.currentTileSetPrimitive = undefined;
         }
         if (selectedTileSet) {
-          this.currentTileSet = this.viewer.scene.primitives.add(
+          this.currentTileSetPrimitive = this.viewer.scene.primitives.add(
             new Cesium.Cesium3DTileset({
               url: selectedTileSet.url
             })
           );
-          this.viewer.flyTo(this.currentTileSet);
+          this.currentTileSetPrimitive.readyPromise.then(tileset => {
+            this.viewer.camera.flyToBoundingSphere(tileset.boundingSphere, {
+              offset: new Cesium.HeadingPitchRange(0, -1, 0)
+            });
+          });
         }
       })
     );

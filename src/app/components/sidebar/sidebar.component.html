@@ -1,5 +1,7 @@
-<h2>Select a Tileset</h2>
-<div *ngFor="let tileSet of tileSets">
-  <button mat-button color="primary" (click)="selectTileSet(tileSet)">{{ tileSet.name }}</button>
+<h3>3D Tile Sets</h3>
+<div *ngFor="let tileSet of tileSets$ | async">
+  <button mat-button [color]="tileSet.name === selectedTileSetName ? 'primary' : null" (click)="selectTileSet(tileSet)">
+    {{ tileSet.name }}
+  </button>
 </div>
-<button mat-button color="warn" (click)="reset()">Reset</button>
+<button mat-button color="accent" (click)="reset()">Reset</button>

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "flights3d": {
+    "city-tour3d": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -25,13 +25,8 @@
                 "output": "/assets/cesium"
               }
             ],
-            "styles": [
-              "src/styles.scss",
-              "node_modules/cesium/Build/Cesium/Widgets/widgets.css"
-            ],
-            "scripts": [
-              "node_modules/cesium/Build/Cesium/Cesium.js"
-            ]
+            "styles": ["src/styles.scss", "node_modules/cesium/Build/Cesium/Widgets/widgets.css"],
+            "scripts": ["node_modules/cesium/Build/Cesium/Cesium.js"]
           },
           "configurations": {
             "production": {
@@ -56,18 +51,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "flights3d:build"
+            "browserTarget": "city-tour3d:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "flights3d:build:production"
+              "browserTarget": "city-tour3d:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "flights3d:build"
+            "browserTarget": "city-tour3d:build"
           }
         },
         "test": {
@@ -78,30 +73,20 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "scripts": [],
-            "styles": [
-              "src/styles.css"
-            ],
-            "assets": [
-              "src/assets",
-              "src/favicon.ico"
-            ]
+            "styles": ["src/styles.css"],
+            "assets": ["src/assets", "src/favicon.ico"]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
     },
-    "flights3d-e2e": {
+    "city-tour3d-e2e": {
       "root": "",
       "sourceRoot": "e2e",
       "projectType": "application",
@@ -110,24 +95,20 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "flights3d:serve"
+            "devServerTarget": "city-tour3d:serve"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
     }
   },
-  "defaultProject": "flights3d",
+  "defaultProject": "city-tour3d",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
