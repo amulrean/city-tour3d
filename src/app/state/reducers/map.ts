@@ -1,5 +1,5 @@
 import { MapState } from './map';
-import { TileSet, ICameraState, IRectangle } from '../../models/map';
+import { TileSet, ICameraState, IRectangle, ITourStop } from '../../models/map';
 import { MapActions, MapActionTypes } from '../actions/map';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { environment } from '../../../environments/environment';
@@ -9,13 +9,15 @@ export interface MapState {
   selectedTileSet: TileSet;
   camera: ICameraState;
   viewRectangle: IRectangle;
+  tourStops: ITourStop[];
 }
 
 const initialState: MapState = {
   tileSets: environment.tileSets,
   selectedTileSet: undefined,
   camera: undefined,
-  viewRectangle: undefined
+  viewRectangle: undefined,
+  tourStops: []
 };
 
 export function mapReducer(state = initialState, action: MapActions) {
@@ -39,6 +41,16 @@ export function mapReducer(state = initialState, action: MapActions) {
         viewRectangle: action.payload.viewRectangle
       };
 
+    case MapActionTypes.AddTourStop:
+      state.tourStops.push({
+        cameraState: Object.assign({}, state.camera),
+        name: ''
+      });
+      return {
+        ...state,
+        tourStops: state.tourStops.slice()
+      };
+
     default:
       return state;
   }
@@ -54,4 +66,9 @@ export const getSelectedTileSet = createSelector(
 export const getTitleSets = createSelector(
   getMapState,
   state => state.tileSets
+);
+
+export const getTourStops = createSelector(
+  getMapState,
+  state => state.tourStops
 );

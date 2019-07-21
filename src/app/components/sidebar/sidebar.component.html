@@ -1,7 +1,11 @@
 <h3>3D Tile Sets</h3>
 <div *ngFor="let tileSet of tileSets$ | async">
-  <button mat-button [color]="tileSet.name === selectedTileSetName ? 'primary' : null" (click)="selectTileSet(tileSet)">
-    {{ tileSet.name }}
+  <button mat-button [color]="tileSet.city === selectedTileSetCity ? 'primary' : null" (click)="selectTileSet(tileSet)">
+    {{ tileSet.country }} - {{ tileSet.city }}
   </button>
 </div>
 <button mat-button color="accent" (click)="reset()">Reset</button>
+<button mat-button color="accent" (click)="addTourStop()">Add Tour Stop</button>
+<div *ngFor="let tourStop of tourStops$ | async">
+  <button mat-button>Tour Stop: {{ index }}</button>
+</div>

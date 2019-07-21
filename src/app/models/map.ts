@@ -1,5 +1,6 @@
 export interface TileSet {
-  name: string;
+  country: string;
+  city: string;
   url: string;
 }
 
@@ -21,6 +22,11 @@ export interface IRectangle {
   south: number;
   east: number;
   north: number;
+}
+
+export interface ITourStop {
+  name: string;
+  cameraState: ICameraState;
 }
 
 export interface IMoveEndPayload {
