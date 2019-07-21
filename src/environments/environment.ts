@@ -7,16 +7,39 @@ export const environment = {
   production: false,
   tileSets: [
     {
-      name: 'Washington DC',
+      country: 'USA',
+      city: 'Washington DC',
       url: 'https://s3.amazonaws.com/amulrean-vricon/usa/washington_dc/tileset.json'
     },
     {
-      name: 'North Korea',
+      country: 'Brazil',
+      city: 'Rio De Janeiro',
+      url: 'https://s3.amazonaws.com/amulrean-vricon/brazil/rio_de_janeiro/tileset.json'
+    },
+    {
+      country: 'Sweden',
+      city: 'Stockholm',
+      url: 'https://s3.amazonaws.com/amulrean-vricon/sweden/stockholm/tileset.json'
+    },
+    {
+      country: 'North Korea',
+      city: 'Pyongyang',
       url: 'https://s3.amazonaws.com/amulrean-vricon/north_korea/pyongyang/tileset.json'
     },
     {
-      name: 'Brazil',
-      url: 'https://s3.amazonaws.com/amulrean-vricon/brazil/rio_de_janeiro/tileset.json'
+      country: 'Afghanistan',
+      city: 'Mazar E Sharif',
+      url: 'https://s3.amazonaws.com/amulrean-vricon/afghanistan/mazar_e_sharif/tileset.json'
+    },
+    {
+      country: 'Libya',
+      city: 'Tripoli',
+      url: 'https://s3.amazonaws.com/amulrean-vricon/libya/tripoli/tileset.json'
+    },
+    {
+      country: 'Saudi Arabia',
+      city: 'Taif',
+      url: 'https://s3.amazonaws.com/amulrean-vricon/saudi_arabia/taif/tileset.json'
     }
   ]
 };
