@@ -3,7 +3,14 @@ import { Observable, timer, Subscription } from 'rxjs';
 import { select, Store } from '@ngrx/store';
 import { TileSet, ITourStop } from '../../models/map';
 import { MapState, getSelectedTileSet, getTitleSets, getTourStops } from '../../state/reducers/map';
-import { SelectTileSet, UnselectTile, AddTourStop } from '../../state/actions/map';
+import {
+  SelectTileSet,
+  UnselectTile,
+  AddTourStop,
+  RemoveTourStop,
+  ClearMoveToTourStop,
+  ClearTourStops
+} from '../../state/actions/map';
 
 @Component({
   selector: 'app-sidebar',
@@ -49,5 +56,11 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   addTourStop() {
     this.store.dispatch(new AddTourStop());
+  }
+  clearTourStops() {
+    this.store.dispatch(new ClearTourStops());
+  }
+  removeTourStop(index: number) {
+    this.store.dispatch(new RemoveTourStop(index));
   }
 }

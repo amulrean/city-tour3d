@@ -10,6 +10,7 @@ export interface MapState {
   camera: ICameraState;
   viewRectangle: IRectangle;
   tourStops: ITourStop[];
+  moveToTourStop: ITourStop;
 }
 
 const initialState: MapState = {
@@ -17,7 +18,8 @@ const initialState: MapState = {
   selectedTileSet: undefined,
   camera: undefined,
   viewRectangle: undefined,
-  tourStops: []
+  tourStops: [],
+  moveToTourStop: undefined
 };
 
 export function mapReducer(state = initialState, action: MapActions) {
@@ -49,6 +51,26 @@ export function mapReducer(state = initialState, action: MapActions) {
       return {
         ...state,
         tourStops: state.tourStops.slice()
+      };
+    case MapActionTypes.RemoveTourStop:
+      return {
+        ...state,
+        tourStops: []
+      };
+    case MapActionTypes.ClearTourStops:
+      return {
+        ...state,
+        tourStops: []
+      };
+    case MapActionTypes.SetMoveToTourStop:
+      return {
+        ...state,
+        moveToTourStop: action.payload
+      };
+    case MapActionTypes.ClearMoveToTourStop:
+      return {
+        ...state,
+        moveToTourStop: undefined
       };
 
     default:

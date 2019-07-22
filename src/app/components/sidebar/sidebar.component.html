@@ -6,6 +6,9 @@
 </div>
 <button mat-button color="accent" (click)="reset()">Reset</button>
 <button mat-button color="accent" (click)="addTourStop()">Add Tour Stop</button>
-<div *ngFor="let tourStop of tourStops$ | async">
-  <button mat-button>Tour Stop: {{ index }}</button>
-</div>
+<button mat-button color="accent" (click)="clearTourStops()">Clear Tour Stops</button>
+<mat-chip-list class="mat-chip-list-stacked" aria-label="Tour Stops">
+  <mat-chip *ngFor="let tourStop of tourStops$ | async" removable="true" (removed)="removeTourStop(index)">
+    Tour Stop: {{ index }}
+  </mat-chip>
+</mat-chip-list>
