@@ -4,7 +4,6 @@ import { Observable, Subscription } from 'rxjs';
 import { TileSet, IMoveEndPayload, IRectangle, ICameraState } from '../../models/map';
 import { MapState, getSelectedTileSet } from '../../state/reducers/map';
 import { MoveEnd } from '../../state/actions/map';
-
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
